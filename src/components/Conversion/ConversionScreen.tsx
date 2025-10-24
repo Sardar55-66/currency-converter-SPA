@@ -142,12 +142,10 @@ export const ConversionScreen: React.FC = () => {
     });
 
     if (!rates || debouncedAmount <= 0 || !isFromCurrencyAvailable || !isToCurrencyAvailable) {
-      console.log('Conversion blocked:', { rates: !!rates, debouncedAmount, isFromCurrencyAvailable, isToCurrencyAvailable });
       return null;
     }
 
     const result = convertCurrency(debouncedAmount, from, to, rates);
-    console.log('Conversion result:', result);
     return result;
   }, [debouncedAmount, from, to, rates, isFromCurrencyAvailable, isToCurrencyAvailable]);
 
@@ -226,7 +224,7 @@ export const ConversionScreen: React.FC = () => {
       <div className="main-currency-section">
         <div className="currency-converter-section">
           <div className="conversion-screen__amount-section">
-            <label>Ammount</label>
+            <label>Amount</label>
             <input
               value={amountRaw}
               onChange={handleAmountChange}
