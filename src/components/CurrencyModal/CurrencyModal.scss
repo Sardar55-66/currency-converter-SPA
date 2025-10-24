@@ -1,0 +1,337 @@
+@use '../../styles/variables' as *;
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.currency-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px;
+    width: 440px;
+    background-color: white;
+    border-radius: 12px;
+    max-height: 80vh;
+    overflow: hidden;
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+
+        .modal-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.21;
+            color: #0A0A0A;
+            margin: 0;
+        }
+
+        .close-button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    .modal-description {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 1.21;
+        color: #737373;
+        margin: 0;
+    }
+
+    .search-container {
+        display: flex;
+        justify-content: stretch;
+        align-items: stretch;
+        align-self: stretch;
+
+        .search-input {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background-color: #FAFAFA;
+            border: 3px solid #DBEAFE;
+            border-radius: 8px;
+            width: 100%;
+
+            &:focus-within {
+                border-color: #51A2FF;
+            }
+
+            .search-icon {
+                width: 18px;
+                height: 18px;
+                flex-shrink: 0;
+            }
+
+            .search-field {
+                flex: 1;
+                background: none;
+                border: none;
+                outline: none;
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 1.21;
+                color: #0A0A0A;
+
+                &::placeholder {
+                    color: #737373;
+                }
+            }
+        }
+    }
+
+    .currency-list {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        gap: 8px;
+        max-height: 284px;
+        overflow-y: auto;
+
+        .currency-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-self: stretch;
+            gap: 12px;
+            padding: 12px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background-color: #F5F5F5;
+            }
+
+            &.selected {
+                background-color: #E3F2FD;
+                border: 1px solid #1447E6;
+            }
+
+            &.keyboard-selected {
+                background-color: #F0F8FF;
+                border: 1px solid #1447E6;
+                outline: none;
+            }
+
+            &.selected.keyboard-selected {
+                background-color: #E3F2FD;
+                border: 2px solid #1447E6;
+            }
+
+            .currency-info {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+
+                .currency-symbol-badge {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 30px;
+                    height: 30px;
+                    background-color: #EFF6FF;
+                    border: 1px solid #BEDBFF;
+                    border-radius: 50px;
+
+                    .currency-symbol {
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                        font-size: 12px;
+                        line-height: 1.21;
+                        color: #1447E6;
+                    }
+                }
+
+                .currency-details {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 2px;
+
+                    .currency-code {
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 1.21;
+                        color: #0A0A0A;
+                    }
+
+                    .currency-name {
+                        font-family: 'Inter', sans-serif;
+                        font-weight: 500;
+                        font-size: 12px;
+                        line-height: 1.21;
+                        color: #737373;
+                    }
+                }
+            }
+
+            .check-icon {
+                width: 18px;
+                height: 18px;
+                flex-shrink: 0;
+            }
+        }
+    }
+}
+
+// Mobile styles (≤480px)
+@media (max-width: 480px) {
+    .currency-modal {
+        width: 90vw;
+        max-width: 400px;
+        padding: 16px;
+        gap: 16px;
+
+        .modal-header {
+            .modal-title {
+                font-size: 16px;
+            }
+        }
+
+        .modal-description {
+            font-size: 14px;
+        }
+
+        .search-container {
+            .search-input {
+                padding: 12px;
+                gap: 8px;
+
+                .search-field {
+                    font-size: 16px; // Prevent zoom on iOS
+                }
+            }
+        }
+
+        .currency-list {
+            max-height: 50vh;
+
+            .currency-option {
+                padding: 16px 12px;
+
+                .currency-info {
+                    gap: 12px;
+
+                    .currency-symbol-badge {
+                        width: 32px;
+                        height: 32px;
+
+                        .currency-symbol {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .currency-details {
+                        gap: 4px;
+
+                        .currency-code {
+                            font-size: 16px;
+                        }
+
+                        .currency-name {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Desktop styles (≥1024px)
+@media (min-width: 1024px) {
+    .currency-modal {
+        width: 500px;
+        padding: 24px;
+        gap: 20px;
+
+        .modal-header {
+            .modal-title {
+                font-size: 20px;
+            }
+        }
+
+        .modal-description {
+            font-size: 16px;
+        }
+
+        .search-container {
+            .search-input {
+                padding: 12px 16px;
+                gap: 12px;
+
+                .search-field {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .currency-list {
+            max-height: 60vh;
+
+            .currency-option {
+                padding: 16px 20px;
+
+                .currency-info {
+                    gap: 16px;
+
+                    .currency-symbol-badge {
+                        width: 36px;
+                        height: 36px;
+
+                        .currency-symbol {
+                            font-size: 16px;
+                        }
+                    }
+
+                    .currency-details {
+                        gap: 4px;
+
+                        .currency-code {
+                            font-size: 16px;
+                        }
+
+                        .currency-name {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

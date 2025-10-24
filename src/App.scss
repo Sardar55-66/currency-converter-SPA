@@ -1,0 +1,16 @@
+@use './styles/variables' as *;
+
+.app {
+    min-height: 100vh;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-4;
+    flex-direction: column;
+    gap: $spacing-4;
+}
+.main-title, .main-subtitle {
+    display: block;
+    text-align: center;
+    margin: 25px 0;
+}

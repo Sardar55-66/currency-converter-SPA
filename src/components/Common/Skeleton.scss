@@ -1,0 +1,74 @@
+@use '../../styles/variables' as *;
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+  .skeleton-line {
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.skeleton-button {
+  border-radius: 8px;
+}
+
+.skeleton-card {
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  
+  .skeleton-title {
+    margin-bottom: 4px;
+  }
+  
+  .skeleton-subtitle {
+    margin-bottom: 8px;
+  }
+  
+  .skeleton-content {
+    margin-top: 8px;
+  }
+}
+
+// Specific skeleton variants
+.skeleton-currency-select {
+  height: 48px;
+  border-radius: 8px;
+  width: 230px;
+}
+
+.skeleton-result-value {
+  height: 32px;
+  width: 120px;
+  border-radius: 4px;
+}
+
+.skeleton-exchange-rate {
+  height: 16px;
+  width: 180px;
+  border-radius: 2px;
+}

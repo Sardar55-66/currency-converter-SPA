@@ -1,0 +1,693 @@
+@use '../../styles/variables' as *;
+
+.conversion-screen {
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  background-color: white;
+  border-radius: 16px;
+
+  &__title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    margin-bottom: $spacing-4;
+  }
+
+  &__amount-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: stretch;
+    gap: 8px;
+
+    label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 1.21;
+      color: #0A0A0A;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 0;
+      background-color: #FAFAFA;
+      border: 1px solid #D4D4D4;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.21;
+      color: #0A0A0A;
+      text-align: center;
+      transition: $transition-colors;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-500;
+        box-shadow: 0 0 0 2px rgba($primary-500, 0.2);
+      }
+    }
+  }
+
+  &__currency-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    align-self: stretch;
+    gap: 12px;
+
+    .currency-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+
+      label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 1.21;
+        color: #0A0A0A;
+      }
+
+      .currency-select {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 4px 8px;
+        background-color: #FAFAFA;
+        border: 1px solid #D4D4D4;
+        border-radius: 8px;
+        width: 230px;
+        height: auto;
+        cursor: pointer;
+
+        .currency-symbol {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+          background-color: #EFF6FF;
+          border: 1px solid #BEDBFF;
+          border-radius: 50px;
+          font-family: 'Inter', sans-serif;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 1.21;
+          color: #1447E6;
+        }
+
+        .currency-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 2px;
+
+          .currency-code {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 1.21;
+            color: #0A0A0A;
+          }
+
+          .currency-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 1.21;
+            color: #737373;
+          }
+        }
+      }
+    }
+
+    .swap-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 12px;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      transition: $transition-colors;
+
+      .swap-icon {
+        width: 16px;
+        height: 15px;
+        flex-shrink: 0;
+      }
+
+      &:hover {
+        background-color: #FAFAFA;
+      }
+
+      &:focus {
+        outline: none;
+        background-color: #FAFAFA;
+      }
+    }
+  }
+
+  &__result-section {
+    padding: $spacing-3;
+    border: 1px solid $gray-300;
+    border-radius: $border-radius-md;
+    background-color: white;
+    margin-bottom: $spacing-3;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  &__info-section {
+    margin-top: $spacing-3;
+    font-size: 0.875rem;
+    color: $gray-600;
+
+    .error {
+      color: $red-600;
+      margin-bottom: $spacing-2;
+    }
+
+    .warning {
+      color: $yellow-700;
+      margin-bottom: $spacing-2;
+    }
+
+    button {
+      margin-top: $spacing-2;
+      padding: $spacing-1 $spacing-3;
+      border: 1px solid $gray-300;
+      border-radius: $border-radius-md;
+      background-color: white;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: $transition-colors;
+
+      &:hover {
+        background-color: $gray-100;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary-500;
+        box-shadow: 0 0 0 2px rgba($primary-500, 0.2);
+      }
+    }
+  }
+}
+
+.main-currency-section {
+  display: flex;
+  gap: 30px;
+}
+
+.conversion-screen__amount-section {
+  margin-bottom: 25px;
+}
+
+.currency-converter-section {
+  border: 1px solid #D4D4D4;
+  border-radius: 16px;
+  padding: 20px;
+  height: max-content;
+}
+
+.currency-conversion-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 20px;
+  width: 336px;
+  background-color: white;
+  border: 1px solid #D4D4D4;
+  border-radius: 16px;
+
+  .conversion-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.21;
+    color: #0A0A0A;
+    margin: 0;
+  }
+
+  .result-value-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    gap: 4px;
+
+    .result-value {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 1.21;
+      color: #0A0A0A;
+    }
+
+    .result-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.21;
+      color: #737373;
+    }
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: #E5E5E5;
+  }
+
+  .conversion-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    gap: 12px;
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-self: stretch;
+      gap: 20px;
+
+      .info-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 1.21;
+        color: #737373;
+      }
+
+      .info-value {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 1.21;
+        color: #0A0A0A;
+      }
+    }
+  }
+
+  .disclaimer {
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    align-self: stretch;
+    gap: 10px;
+    padding: 8px 12px;
+    background-color: #FAFAFA;
+    border-radius: 12px;
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 1.21;
+      text-align: center;
+      color: #737373;
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
+
+.offline-status-text {
+  color: #C10007;
+}
+
+.online {
+  background-color: #B9F8CF;
+  color: #008236;
+}
+
+.offline {
+  background-color: #FFC9C9;
+  color: #C10007;
+}
+
+.status-date-refresh-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-2 $spacing-3;
+  background-color: $gray-50;
+  border-radius: $border-radius-md;
+  margin-bottom: $spacing-4;
+
+  .network-status {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+    font-size: 12px;
+    border-radius: 8px;
+    padding: 5px;
+
+    .status-icon {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    .status-text {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: $gray-700;
+    }
+  }
+
+  .last-update-date {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+    color: $gray-600;
+    font-size: 12px;
+    margin: 0 10px;
+
+    .clock-icon {
+      width: 10px;
+      height: 11px;
+      flex-shrink: 0;
+    }
+  }
+
+  .refresh-rates-btn {
+    .refresh-button {
+      display: flex;
+      align-items: center;
+      gap: $spacing-1;
+      padding: $spacing-1 $spacing-2;
+      background-color: #EFF6FF;
+      border: 1px solid $gray-300;
+      border-radius: $border-radius-sm;
+      color: #1447E6;
+      font-size: 12px;
+      cursor: pointer;
+      transition: $transition-colors;
+      border-radius: 8px;
+      cursor: pointer;
+
+      .refresh-icon {
+        width: 8px;
+        height: 8px;
+        flex-shrink: 0;
+      }
+
+      &:hover {
+        background-color: $gray-100;
+        border-color: $gray-400;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary-500;
+        box-shadow: 0 0 0 2px rgba($primary-500, 0.2);
+      }
+
+      &:active {
+        background-color: $gray-200;
+      }
+    }
+  }
+}
+
+
+// mobile styles (≤480px)
+@media (max-width: 480px) {
+  .main-currency-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .conversion-screen {
+    padding: 16px;
+    gap: 16px;
+
+    .currency-converter-section {
+      padding: 20px;
+      gap: 24px;
+      align-items: center;
+      align-self: stretch;
+
+      .conversion-screen__amount-section {
+        gap: 8px;
+        align-self: stretch;
+
+        label {
+          font-family: 'Inter', sans-serif;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 1.21;
+          color: #0A0A0A;
+        }
+
+        input {
+          padding: 12px 0px;
+          gap: 10px;
+          align-self: stretch;
+          background-color: #FAFAFA;
+          border: 1px solid #D4D4D4;
+          border-radius: 8px;
+          font-family: 'Inter', sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 1.21;
+          color: #0A0A0A;
+          text-align: center;
+        }
+      }
+
+      .conversion-screen__currency-section {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        align-self: stretch;
+
+        .currency-field {
+          gap: 8px;
+          align-self: stretch;
+          height: 65px;
+
+          label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 1.21;
+            color: #0A0A0A;
+          }
+
+          .currency-select {
+            gap: 12px;
+            padding: 4px 8px;
+            align-self: stretch;
+            background-color: #FAFAFA;
+            border: 1px solid #D4D4D4;
+            border-radius: 8px;
+
+            .currency-symbol {
+              width: 30px;
+              height: 30px;
+              background-color: #EFF6FF;
+              border: 1px solid #BEDBFF;
+              border-radius: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-family: 'Inter', sans-serif;
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 1.21;
+              color: #1447E6;
+            }
+
+            .currency-info {
+              gap: 2px;
+
+              .currency-code {
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 1.21;
+                color: #0A0A0A;
+              }
+
+              .currency-name {
+                font-family: 'Inter', sans-serif;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 1.21;
+                color: #737373;
+              }
+            }
+          }
+        }
+
+        .swap-button {
+          gap: 12px;
+          padding: 12px;
+          width: auto;
+          height: auto;
+          background-color: white;
+          border: 1px solid #D4D4D4;
+          border-radius: 8px;
+
+          .swap-icon {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+
+    .currency-conversion-result {
+      padding: 20px;
+      gap: 24px;
+      align-items: center;
+      align-self: stretch;
+
+      .conversion-title {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1.21;
+        color: #0A0A0A;
+      }
+
+      .result-value-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        align-self: stretch;
+
+        .result-value {
+          font-family: 'Inter', sans-serif;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 1.21;
+          color: #0A0A0A;
+        }
+
+        .result-label {
+          font-family: 'Inter', sans-serif;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 1.21;
+          color: #737373;
+        }
+      }
+
+      .divider {
+        height: 0px;
+        align-self: stretch;
+        border: 1px solid #E5E5E5;
+      }
+
+      .conversion-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+
+        .info-row {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          gap: 20px;
+          align-self: stretch;
+
+          .info-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 1.21;
+            color: #737373;
+          }
+
+          .info-value {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 1.21;
+            color: #0A0A0A;
+          }
+        }
+      }
+
+      .disclaimer {
+        align-self: stretch;
+        padding: 8px 12px;
+        background-color: #FAFAFA;
+        border-radius: 12px;
+
+        p {
+          font-family: 'Inter', sans-serif;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 1.21;
+          text-align: center;
+          color: #737373;
+        }
+      }
+    }
+  }
+  .status-date-refresh-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .currency-select {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1024px) {
+  .main-currency-section {
+    display: flex;
+    flex-direction: column;
+  }
+  .currency-conversion-result {
+    width: 100%;
+  }
+  .status-date-refresh-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+// Desktop styles (≥1024px)
+@media (min-width: 1024px) {
+  .conversion-screen {
+    max-width: 1200px;
+    padding: 32px;
+    gap: 32px;
+
+    .currency-converter-section {
+      padding: 24px;
+      gap: 24px;
+    }
+
+    .currency-conversion-result {
+      padding: 24px;
+      gap: 24px;
+      max-width: none;
+    }
+  }
+}
